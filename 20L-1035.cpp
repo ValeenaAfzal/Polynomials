@@ -139,6 +139,19 @@ public:
 
 	Polynomial(const Polynomial& rhs)// copy constructor
 	{
+		if (this->First)// if there is alredy existing list remove it
+		{
+			Term* current = First;
+			Term* next;
+			while (current != NULL) // deleting each node beginning from start
+			{
+				next = current->Next;// keep pointer track to next and delete current
+				if (current)
+					delete current;
+				current = next;
+			}
+		}
+
 		Term* temp = new Term();// new poinetr
 		First = temp;
 		First->Next = temp->Next = Last = NULL;
@@ -156,6 +169,19 @@ public:
 
 	Polynomial& operator=(const Polynomial& rhs)//Assignement operrator
 	{
+		if (this->First)// if there is alredy existing list remove it
+		{
+			Term* current = First;
+			Term* next;
+			while (current != NULL) // deleting each node beginning from start
+			{
+				next = current->Next;// keep pointer track to next and delete current
+				if (current)
+					delete current;
+				current = next;
+			}
+		}
+
 		if (this != &rhs)//avoid self assignement
 		{
 			Term* temp = new Term();
